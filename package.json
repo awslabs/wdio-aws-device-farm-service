@@ -46,6 +46,7 @@
     "example": "npx wdio ./example/wdio.conf.js"
   },
   "dependencies": {
+    "@wdio/types": "^7.0.7",
     "aws-sdk": "^2.825.0"
   },
   "devDependencies": {

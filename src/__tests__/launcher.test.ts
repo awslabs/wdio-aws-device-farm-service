@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 import { createTestGridUrlResponse } from "../__mocks__/aws-sdk/clients/devicefarm";
 import { SevereServiceError } from "webdriverio";
+import type { Options } from '@wdio/types'
 import DeviceFarmLauncher from "../launcher";
 
 describe("DeviceFarmLauncher", () => {
@@ -11,8 +12,9 @@ describe("DeviceFarmLauncher", () => {
     const projectArn = "arn";
     const subject = new DeviceFarmLauncher({ projectArn });
 
+    const config = {} as Options.Testrunner
     const capabilites = { browserName: "chrome" };
-    await subject.onPrepare({}, [capabilites]);
+    await subject.onPrepare(config, [capabilites]);
 
     expect(capabilites).toEqual({
       protocol: "https",
@@ -33,8 +35,9 @@ describe("DeviceFarmLauncher", () => {
     const projectArn = "arn";
     const subject = new DeviceFarmLauncher({ projectArn });
 
+    const config = {} as Options.Testrunner
     const capabilites = { browserName: "chrome" };
-    void expect(subject.onPrepare({}, [capabilites])).rejects.toEqual(
+    void expect(subject.onPrepare(config, [capabilites])).rejects.toEqual(
       new SevereServiceError(errorMessage)
     );
   });
