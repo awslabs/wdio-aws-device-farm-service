@@ -27,21 +27,34 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
   ): Promise<void> {
     if (Array.isArray(capabilities)) {
       for (const cap of capabilities) {
-        const testGridUrlResult = await this.createSession();
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        const url = new URL(testGridUrlResult.url!);
-
-        log.info("Created device farm test grid:", testGridUrlResult);
-
-        Object.assign(cap, {
-          protocol: "https",
-          port: 443,
-          hostname: url.hostname,
-          path: url.pathname,
-          connectionRetryTimeout: 180000,
-        });
+        await this.setCapabilitySession(cap);
+      }
+    } else if (typeof capabilities === "object" && capabilities !== null) {
+      for (const cap of Object.values(capabilities)) {
+        await this.setCapabilitySession(cap);
       }
     }
+  }
+
+  private async setCapabilitySession(
+    capability:
+      | Capabilities.DesiredCapabilities
+      | Capabilities.W3CCapabilities
+      | Options.WebdriverIO
+  ) {
+    const testGridUrlResult = await this.createSession();
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const url = new URL(testGridUrlResult.url!);
+
+    log.info("Created device farm test grid:", testGridUrlResult);
+
+    Object.assign(capability, {
+      protocol: "https",
+      port: 443,
+      hostname: url.hostname,
+      path: url.pathname,
+      connectionRetryTimeout: 180000,
+    });
   }
 
   // https://docs.aws.amazon.com/devicefarm/latest/testgrid/testing-frameworks-nodejs.html
