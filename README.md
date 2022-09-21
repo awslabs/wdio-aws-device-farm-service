@@ -1,7 +1,8 @@
 ## AWS Device Farm Service for WebdriverIO 
 
 [AWS Device Farm](https://aws.amazon.com/device-farm/) service for WebdriverIO.
-Note: this service only supports desktop browser testing
+
+This service only supports desktop browser testing
 
 ## Installation
 
