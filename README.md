@@ -26,7 +26,7 @@ export AWS_REGION="us-west-2"
 
 npm run example
 ```
-
+Note: this service only supports desktop browser testing
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
