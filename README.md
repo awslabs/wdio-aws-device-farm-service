@@ -2,6 +2,8 @@
 
 [AWS Device Farm](https://aws.amazon.com/device-farm/) service for WebdriverIO.
 
+This service only supports desktop browser testing
+
 ## Installation
 
 ```
@@ -26,7 +28,6 @@ export AWS_REGION="us-west-2"
 
 npm run example
 ```
-
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
