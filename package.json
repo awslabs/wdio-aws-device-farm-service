@@ -14,7 +14,7 @@
     "Florian Nagel <fnagel@amazon.com>",
     "Hector Gavin Rivas <hecgav@amazon.com>",
     "Javier Luna Molina <jlunamol@amazon.com>",
-    "Michal Pasierbski <mpasierb@amazon.com>"
+    "Arnulfo Solis Ramirez <arnsolis@amazon.com>"
   ],
   "bugs": {
     "url": "https://github.com/awslabs/wdio-aws-device-farm-service/issues"
@@ -33,7 +33,7 @@
     "!/**/__tests__"
   ],
   "engines": {
-    "node": ">= 0.12.0"
+    "node": ">=12.0.0"
   },
   "scripts": {
     "build": "tsc",
@@ -49,7 +49,7 @@
     "aws-sdk": "^2.991.0"
   },
   "devDependencies": {
-    "@tsconfig/node10": "^1.0.9",
+    "@tsconfig/node12": "^1.0.0",
     "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/eslint-plugin-tslint": "^5.43.0",
