@@ -40,7 +40,7 @@
     "clean": "rm -rf dist node_modules",
     "lint": "eslint -c .eslintrc.js --ext .ts .",
     "lintfix": "eslint -c .eslintrc.js --fix --ext .ts .",
-    "test": "vitest run",
+    "test": "vitest run --silent",
     "prebuild": "rm -rf dist",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "example": "npx wdio ./example/wdio.conf.js"
