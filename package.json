@@ -40,7 +40,7 @@
     "clean": "rm -rf dist node_modules",
     "lint": "eslint -c .eslintrc.js --ext .ts .",
     "lintfix": "eslint -c .eslintrc.js --fix --ext .ts .",
-    "test": "jest --silent",
+    "test": "vitest run",
     "prebuild": "rm -rf dist",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "example": "npx wdio ./example/wdio.conf.js"
@@ -50,7 +50,6 @@
   },
   "devDependencies": {
     "@tsconfig/node12": "^1.0.0",
-    "@types/jest": "^27.0.2",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/eslint-plugin-tslint": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
@@ -66,7 +65,8 @@
     "prettier": "2.7.1",
     "ts-jest": "^27.0.5",
     "ts-node": "^9.1.1",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "vitest": "^0.31.0"
   },
   "husky": {
     "hooks": {

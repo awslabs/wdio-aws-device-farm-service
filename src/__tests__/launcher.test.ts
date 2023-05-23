@@ -1,9 +1,12 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
-import { createTestGridUrlResponse } from "../__mocks__/aws-sdk/clients/devicefarm";
+import { createTestGridUrlResponse } from "../../__mocks__/aws-sdk/clients/devicefarm";
 import { SevereServiceError } from "webdriverio";
 import { Options } from "@wdio/types";
 import DeviceFarmLauncher from "../launcher";
+import { expect, vi } from "vitest";
+
+vi.mock("aws-sdk/clients/devicefarm");
 
 describe("DeviceFarmLauncher", () => {
   let config: Options.Testrunner;
