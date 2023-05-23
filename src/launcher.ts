@@ -1,7 +1,7 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 import { SevereServiceError } from "webdriverio";
-import DeviceFarm from "aws-sdk/clients/devicefarm";
+import DeviceFarm from "aws-sdk/clients/devicefarm.js";
 import getLogger from "@wdio/logger";
 import { Services, Capabilities, Options } from "@wdio/types";
 

@@ -2,5 +2,6 @@ coverage
 dist
 node_modules
 package
+types
 *.log
 *.tgz
