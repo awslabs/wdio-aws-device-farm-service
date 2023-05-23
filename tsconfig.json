@@ -7,7 +7,8 @@
     "removeComments": true,
     "strictFunctionTypes": false,
     "lib": ["dom"],
-    "outDir": "dist/"
+    "outDir": "dist/",
+    "types": ["vitest/globals"]
   },
   "include": ["src/"]
 }
