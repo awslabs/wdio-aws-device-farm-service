@@ -8,7 +8,7 @@
     "resolveJsonModule": true,
     "removeComments": true,
     "strictFunctionTypes": false,
-    "lib": ["dom", "ES2020"],
+    "lib": ["dom", "ES2021"],
     "outDir": "dist/",
     "module": "ES6",
     "types": ["vitest/globals"]
