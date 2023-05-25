@@ -1,7 +1,10 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
 import { SevereServiceError } from "webdriverio";
-import DeviceFarm from "aws-sdk/clients/devicefarm";
+import {
+  DeviceFarmClient,
+  CreateTestGridUrlCommand,
+} from "@aws-sdk/client-device-farm";
 import getLogger from "@wdio/logger";
 import { Services, Capabilities, Options } from "@wdio/types";
 
@@ -13,12 +16,12 @@ interface DeviceFarmConfig extends Services.ServiceOption {
 }
 
 export default class DeviceFarmLauncher implements Services.ServiceInstance {
-  private readonly devicefarm: DeviceFarm;
+  private readonly devicefarmClient: DeviceFarmClient;
 
   constructor(private readonly _options: DeviceFarmConfig) {
     // DeviceFarm is only available in us-west-2
     // https://docs.aws.amazon.com/general/latest/gr/devicefarm.html
-    this.devicefarm = new DeviceFarm({ region: "us-west-2" });
+    this.devicefarmClient = new DeviceFarmClient({ region: "us-west-2" });
   }
 
   public async onPrepare(
@@ -59,13 +62,13 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
 
   // https://docs.aws.amazon.com/devicefarm/latest/testgrid/testing-frameworks-nodejs.html
   private async createSession() {
+    const input = {
+      projectArn: this._options.projectArn,
+      expiresInSeconds: this._options.expiresInSeconds || 900,
+    };
+    const command = new CreateTestGridUrlCommand(input);
     try {
-      return await this.devicefarm
-        .createTestGridUrl({
-          projectArn: this._options.projectArn,
-          expiresInSeconds: this._options.expiresInSeconds || 900,
-        })
-        .promise();
+      return await this.devicefarmClient.send(command);
     } catch (err) {
       log.error(err);
       throw new SevereServiceError((err as Error).message);
