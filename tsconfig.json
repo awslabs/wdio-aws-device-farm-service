@@ -10,7 +10,7 @@
     "strictFunctionTypes": false,
     "lib": ["dom", "ES2021"],
     "outDir": "dist/",
-    "module": "commonjs",
+    "module": "Node16",
     "types": ["vitest/globals"]
   },
   "include": ["src/"]
