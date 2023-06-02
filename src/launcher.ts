@@ -1,14 +1,12 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
-import { SevereServiceError } from "webdriverio";
 import {
-  DeviceFarmClient,
   CreateTestGridUrlCommand,
+  DeviceFarmClient,
 } from "@aws-sdk/client-device-farm";
-import getLogger from "@wdio/logger";
-import { Services, Capabilities, Options } from "@wdio/types";
-
-const log = getLogger("@wdio/devicefarm-service");
+import type { Logger } from "@wdio/logger";
+import type { Capabilities, Options, Services } from "@wdio/types";
+import { SevereServiceError } from "webdriverio";
 
 interface DeviceFarmConfig extends Services.ServiceOption {
   projectArn: string;
@@ -17,6 +15,7 @@ interface DeviceFarmConfig extends Services.ServiceOption {
 
 export default class DeviceFarmLauncher implements Services.ServiceInstance {
   private readonly devicefarmClient: DeviceFarmClient;
+  private logger: Logger | undefined = undefined;
 
   constructor(private readonly _options: DeviceFarmConfig) {
     // DeviceFarm is only available in us-west-2
@@ -28,6 +27,12 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
     _config: Options.Testrunner,
     capabilities: Capabilities.RemoteCapabilities
   ): Promise<void> {
+    try {
+      const getLogger = await import("@wdio/logger");
+      this.logger = getLogger.default("@wdio/devicefarm-service");
+    } catch {
+      // No operation
+    }
     if (Array.isArray(capabilities)) {
       for (const cap of capabilities) {
         await this.setCapabilitySession(cap);
@@ -49,7 +54,7 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const url = new URL(testGridUrlResult.url!);
 
-    log.info("Created device farm test grid:", testGridUrlResult);
+    this.logger?.info("Created device farm test grid:", testGridUrlResult);
 
     Object.assign(capability, {
       protocol: "https",
@@ -70,7 +75,7 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
     try {
       return await this.devicefarmClient.send(command);
     } catch (err) {
-      log.error(err);
+      this.logger?.error(err);
       throw new SevereServiceError((err as Error).message);
     }
   }
