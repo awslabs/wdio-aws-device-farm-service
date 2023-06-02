@@ -1,12 +1,12 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
-import { SevereServiceError } from "webdriverio";
 import {
-  DeviceFarmClient,
   CreateTestGridUrlCommand,
+  DeviceFarmClient,
 } from "@aws-sdk/client-device-farm";
-import { Services, Capabilities, Options } from "@wdio/types";
 import type { Logger } from "@wdio/logger";
+import type { Capabilities, Options, Services } from "@wdio/types";
+import { SevereServiceError } from "webdriverio";
 
 interface DeviceFarmConfig extends Services.ServiceOption {
   projectArn: string;

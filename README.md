@@ -1,8 +1,10 @@
-## AWS Device Farm Service for WebdriverIO 
+## AWS Device Farm Service for WebdriverIO
 
 [AWS Device Farm](https://aws.amazon.com/device-farm/) service for WebdriverIO.
 
-This service only supports desktop browser testing
+This service only supports desktop browser testing.
+
+Upon upgrading the major version to v8, this package is transitioned to the ES module system, and it emits both CJS- and ESM- compatible modules.
 
 ## Installation
 
@@ -28,6 +30,7 @@ export AWS_REGION="us-west-2"
 
 npm run example
 ```
+
 ## Security
 
 See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
