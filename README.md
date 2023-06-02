@@ -4,7 +4,11 @@
 
 This service only supports desktop browser testing.
 
-Upon upgrading the major version to v8, this package is transitioned to the ES module system, and it emits both CJS- and ESM- compatible modules.
+## Upgrading to WebDriverIO v8
+
+The package now provides support for [WebDriverIO v8](https://webdriver.io/blog/2022/12/01/webdriverio-v8-released/) starting from version v8.0.0. However, please note that WebDriverIO v7 will continue to be supported until the end of its [LTS support](https://webdriver.io/versions/) in October 2023.
+
+With the major version upgrade to v8, this package has transitioned to the ES module system. And it now emits modules that are compatible with both CommonJS (CJS) and ECMAScript modules (ESM).
 
 ## Installation
 
