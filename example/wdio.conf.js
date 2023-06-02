@@ -1,42 +1,51 @@
 // Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
 // SPDX-License-Identifier: Apache-2.0
-const path = require('path')
-const { launcher } = require('../dist/index.js')
+import path from "path";
+import { launcher } from "../dist/index.js";
+import { fileURLToPath } from "url";
 
-exports.config = {
-    /**
-     * specify test files
-     */
-    specs: [
-        path.resolve(__dirname, 'devicefarm.test.js')
-    ],
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    /**
-     * capabilities
-     */
-    capabilities: [{
-        browserName: 'chrome',
-        acceptInsecureCerts: true
-    }],
+export const config = {
+  /**
+   * specify test files
+   */
+  specs: [path.resolve(__dirname, "devicefarm.test.js")],
 
-    /**
-     * test configurations
-     */
-    logLevel: 'trace',
-    framework: 'mocha',
-    outputDir: __dirname,
-
-    reporters: ['spec'],
-
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 30000
+  /**
+   * capabilities
+   */
+  capabilities: [
+    {
+      browserName: "chrome",
+      acceptInsecureCerts: true,
     },
+  ],
 
-    /**
-     * device farm service configurations
-     */
-    services: [[launcher, {
-        projectArn: process.env.PROJECT_ARN
-    }]],
-}
+  /**
+   * test configurations
+   */
+  logLevel: "trace",
+  framework: "mocha",
+  outputDir: __dirname,
+
+  reporters: ["spec"],
+
+  mochaOpts: {
+    ui: "bdd",
+    timeout: 30000,
+  },
+
+  /**
+   * device farm service configurations
+   */
+  services: [
+    [
+      launcher,
+      {
+        projectArn: process.env.PROJECT_ARN,
+      },
+    ],
+  ],
+};

@@ -1,6 +1,6 @@
 {
   "name": "wdio-aws-device-farm-service",
-  "version": "7.1.2",
+  "version": "8.0.0",
   "description": "AWS Device Farm support for WebdriverIO",
   "keywords": [
     "aws",
@@ -26,7 +26,29 @@
     "url": "git+https://github.com/awslabs/wdio-aws-device-farm-service.git"
   },
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "types": "types/index.d.ts",
+  "exports": {
+    "import": "./dist/index.js",
+    "require": "./dist/index.cjs",
+    "default": "./dist/index.js"
+  },
+  "tsup": {
+    "entry": [
+      "src/index.ts"
+    ],
+    "sourcemap": true,
+    "clean": true,
+    "metafile": true,
+    "platform": "node",
+    "format": [
+      "esm",
+      "cjs"
+    ],
+    "target": "node16",
+    "bundle": true,
+    "skipNodeModulesBundle": true
+  },
   "files": [
     "dist/",
     "!/**/__mocks__",
@@ -36,37 +58,36 @@
     "node": ">=12.0.0"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsup && tsc",
     "clean": "rm -rf dist node_modules",
-    "lint": "eslint -c .eslintrc.js --ext .ts .",
-    "lintfix": "eslint -c .eslintrc.js --fix --ext .ts .",
-    "test": "jest --silent",
+    "lint": "eslint -c .eslintrc.cjs --ext .ts .",
+    "lintfix": "eslint -c .eslintrc.cjs --fix --ext .ts .",
+    "test": "vitest run --silent",
     "prebuild": "rm -rf dist",
     "prepublishOnly": "npm run lint && npm run test && npm run build",
     "example": "npx wdio ./example/wdio.conf.js"
   },
   "dependencies": {
-    "aws-sdk": "^2.991.0"
+    "@aws-sdk/client-device-farm": "^3.338.0"
   },
   "devDependencies": {
-    "@tsconfig/node12": "^1.0.0",
-    "@types/jest": "^27.0.2",
-    "@typescript-eslint/eslint-plugin": "^5.43.0",
-    "@typescript-eslint/eslint-plugin-tslint": "^5.43.0",
-    "@typescript-eslint/parser": "^5.43.0",
-    "@wdio/cli": "^7.26.0",
-    "@wdio/local-runner": "^7.26.0",
-    "@wdio/mocha-framework": "^7.26.0",
-    "@wdio/spec-reporter": "^7.26.0",
-    "eslint": "^8.27.0",
-    "eslint-config-prettier": "^8.5.0",
+    "@tsconfig/node16": "^1.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/eslint-plugin-tslint": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
+    "@wdio/cli": "^8.10.1",
+    "@wdio/local-runner": "^8.10.1",
+    "@wdio/mocha-framework": "^8.10.1",
+    "@wdio/spec-reporter": "^8.10.1",
+    "eslint": "^8.41.0",
+    "eslint-config-prettier": "^8.8.0",
     "husky": "^8.0.2",
-    "jest": "^27.2.1",
-    "lint-staged": "^13.0.3",
+    "lint-staged": "^13.2.2",
     "prettier": "2.7.1",
-    "ts-jest": "^27.0.5",
-    "ts-node": "^9.1.1",
-    "typescript": "^4.4.3"
+    "ts-node": "^10.9.1",
+    "tsup": "^6.7.0",
+    "typescript": "^5.0.4",
+    "vitest": "^0.31.0"
   },
   "husky": {
     "hooks": {

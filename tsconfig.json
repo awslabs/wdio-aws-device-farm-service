@@ -1,13 +1,17 @@
 {
-  "extends": "@tsconfig/node12/tsconfig.json",
+  "extends": "@tsconfig/node16/tsconfig.json",
   "compilerOptions": {
     "declaration": true,
     "declarationMap": true,
+    "declarationDir": "types",
+    "emitDeclarationOnly": true,
     "resolveJsonModule": true,
     "removeComments": true,
     "strictFunctionTypes": false,
-    "lib": ["dom"],
-    "outDir": "dist/"
+    "lib": ["dom", "ES2021"],
+    "outDir": "dist/",
+    "module": "Node16",
+    "types": ["vitest/globals"]
   },
   "include": ["src/"]
 }
