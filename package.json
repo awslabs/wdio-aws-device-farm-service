@@ -10,11 +10,7 @@
     "wdio-service"
   ],
   "contributors": [
-    "Florian Eitel <eitel@amazon.com>",
-    "Florian Nagel <fnagel@amazon.com>",
-    "Hector Gavin Rivas <hecgav@amazon.com>",
-    "Javier Luna Molina <jlunamol@amazon.com>",
-    "Arnulfo Solis Ramirez <arnsolis@amazon.com>"
+    "AWS Console Testing team <aws-console-testing@amazon.com>"
   ],
   "bugs": {
     "url": "https://github.com/awslabs/wdio-aws-device-farm-service/issues"
