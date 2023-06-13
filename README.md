@@ -41,7 +41,7 @@ See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more inform
 
 ## Getting Help
 
-The best way to interact with our team is through GitHub. You can [open an issue](https://github.com/awslabs/wdio-aws-device-farm-service/issues/new) to get help or to report any issues you expereince.
+The best way to interact with our team is through GitHub. You can [open an issue](https://github.com/awslabs/wdio-aws-device-farm-service/issues/new) to get help or to report any issues you experience.
 
 ## License
 
