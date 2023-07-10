@@ -64,7 +64,7 @@
     "example": "npx wdio ./example/wdio.conf.js"
   },
   "dependencies": {
-    "@aws-sdk/client-device-farm": "^3.338.0"
+    "@aws-sdk/client-device-farm": "^3.363.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.3",
