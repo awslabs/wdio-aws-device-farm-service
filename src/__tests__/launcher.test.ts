@@ -22,8 +22,8 @@ describe("DeviceFarmLauncher", () => {
     vi.resetAllMocks();
   });
 
-  it("Updates capabilities with destination", async () => {
-    createTestGridUrlResponse.mockReturnValueOnce({
+  it("Updates capabilities & config with destination", async () => {
+    createTestGridUrlResponse.mockReturnValue({
       url: "https://devicefarm.url/id",
     });
 
@@ -39,6 +39,14 @@ describe("DeviceFarmLauncher", () => {
       path: "/id",
       port: 443,
       browserName: "chrome",
+      connectionRetryTimeout: 180000,
+    });
+
+    expect(config).toEqual({
+      protocol: "https",
+      hostname: "devicefarm.url",
+      path: "/id",
+      port: 443,
       connectionRetryTimeout: 180000,
     });
   });
