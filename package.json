@@ -1,6 +1,6 @@
 {
   "name": "wdio-aws-device-farm-service",
-  "version": "8.1.0",
+  "version": "8.0.6",
   "description": "AWS Device Farm support for WebdriverIO",
   "keywords": [
     "aws",
