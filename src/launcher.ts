@@ -24,7 +24,7 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
   }
 
   public async onPrepare(
-    _config: Options.Testrunner,
+    config: Options.Testrunner,
     capabilities: Capabilities.RemoteCapabilities
   ): Promise<void> {
     try {
@@ -35,20 +35,24 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
     }
     if (Array.isArray(capabilities)) {
       for (const cap of capabilities) {
-        await this.setCapabilitySession(cap);
+        await this.setRemoteSession(cap);
       }
     } else if (typeof capabilities === "object" && capabilities !== null) {
       for (const cap of Object.values(capabilities)) {
-        await this.setCapabilitySession(cap);
+        await this.setRemoteSession(cap);
       }
     }
+    // Set remote session so that wdio can skip setting up drivers for cross-browser tests.
+    // See: https://github.com/webdriverio/webdriverio/blob/main/packages/wdio-utils/src/node/manager.ts#L63
+    await this.setRemoteSession(config);
   }
 
-  private async setCapabilitySession(
-    capability:
+  private async setRemoteSession(
+    config:
       | Capabilities.DesiredCapabilities
       | Capabilities.W3CCapabilities
       | Options.WebdriverIO
+      | Options.Testrunner
   ) {
     const testGridUrlResult = await this.createSession();
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -56,7 +60,7 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
 
     this.logger?.info("Created device farm test grid:", testGridUrlResult);
 
-    Object.assign(capability, {
+    Object.assign(config, {
       protocol: "https",
       port: 443,
       hostname: url.hostname,
