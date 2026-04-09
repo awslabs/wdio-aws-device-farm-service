@@ -25,7 +25,7 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
 
   public async onPrepare(
     config: Options.Testrunner,
-    capabilities: Capabilities.RemoteCapabilities
+    capabilities: Capabilities.TestrunnerCapabilities 
   ): Promise<void> {
     try {
       const getLogger = await import("@wdio/logger");
@@ -49,7 +49,7 @@ export default class DeviceFarmLauncher implements Services.ServiceInstance {
 
   private async setRemoteSession(
     config:
-      | Capabilities.DesiredCapabilities
+      | WebdriverIO.Capabilities
       | Capabilities.W3CCapabilities
       | Options.WebdriverIO
       | Options.Testrunner

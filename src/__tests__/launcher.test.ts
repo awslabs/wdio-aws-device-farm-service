@@ -4,10 +4,10 @@ import {
   createTestGridUrlResponse,
   DeviceFarmClient,
   CreateTestGridUrlCommand,
-} from "./launcher.mocks";
+} from "./launcher.mocks.js";
 import { SevereServiceError } from "webdriverio";
 import { Options } from "@wdio/types";
-import DeviceFarmLauncher from "../launcher";
+import DeviceFarmLauncher from "../launcher.js";
 import { expect, vi } from "vitest";
 
 vi.mock("@aws-sdk/client-device-farm", () => {
